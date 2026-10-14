@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time Card Calculator: 2-Week Pay Period with Overtime | ClockMath</title>
+<meta name="description" content="Free biweekly time card calculator. Enter daily start and end times for two weeks, subtract breaks, and get total hours, weekly overtime and pay.">
+<link rel="canonical" href="https://clockmathtools.com/time-card-calculator">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ClockMath">
+<meta property="og:title" content="Time Card Calculator: 2-Week Pay Period with Overtime | ClockMath">
+<meta property="og:description" content="Free biweekly time card calculator. Enter daily start and end times for two weeks, subtract breaks, and get total hours, weekly overtime and pay.">
+<meta property="og:url" content="https://clockmathtools.com/time-card-calculator">
+<meta name="theme-color" content="#1f5fbf">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<!-- AdSense: once approved, paste Google's <script> tag here, on every page. -->
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a time card calculator?", "acceptedAnswer": {"@type": "Answer", "text": "It adds up the hours you worked over a pay period from your daily start and end times, subtracts unpaid breaks, and works out overtime and pay."}}, {"@type": "Question", "name": "Is overtime calculated per week or per pay period?", "acceptedAnswer": {"@type": "Answer", "text": "Per workweek. Under US federal law, overtime is owed for hours over 40 in a single workweek. Two weeks cannot be averaged together, so this calculator checks each week separately."}}, {"@type": "Question", "name": "How many hours is a full-time two-week pay period?", "acceptedAnswer": {"@type": "Answer", "text": "A typical full-time two-week pay period is 80 hours: 40 hours a week for two weeks."}}, {"@type": "Question", "name": "Is my time card saved?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in your own browser on this device only. Nothing is sent to ClockMath."}}]}</script>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="30" height="30"><span class="name">Clock<b>Math</b></span></a>
+    <nav class="site-nav" aria-label="Main"><a href="/">Hours Between Times</a><a href="/lunch-break-calculator">Lunch Break</a><a href="/timesheet-calculator">Timesheet</a><a href="/military-time-converter">Military Time</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h1>Time Card Calculator (Two-Week Pay Period)</h1>
+    <p class="lead">Add up two weeks of hours for a biweekly paycheck. Overtime is worked out for each week separately, the way the law requires.</p>
+    <div class="ad-slot" data-slot="top"></div>
+    
+<div class="card">
+  <div class="table-wrap">
+    <table class="timesheet">
+      <thead><tr><th>Day</th><th>Start</th><th>End</th><th>Break (min)</th><th style="text-align:right">Hours</th></tr></thead>
+      <tbody id="rows"><tr class="wk"><td colspan="5"><strong>Week 1</strong></td></tr><tr data-w="0"><td class="day"><span class="short">Mon</span><span class="long">Monday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 1 Monday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 1 Monday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 1 Monday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr data-w="0"><td class="day"><span class="short">Tue</span><span class="long">Tuesday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 1 Tuesday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 1 Tuesday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 1 Tuesday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr data-w="0"><td class="day"><span class="short">Wed</span><span class="long">Wednesday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 1 Wednesday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 1 Wednesday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 1 Wednesday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr data-w="0"><td class="day"><span class="short">Thu</span><span class="long">Thursday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 1 Thursday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 1 Thursday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 1 Thursday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr data-w="0"><td class="day"><span class="short">Fri</span><span class="long">Friday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 1 Friday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 1 Friday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 1 Friday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr data-w="0"><td class="day"><span class="short">Sat</span><span class="long">Saturday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 1 Saturday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 1 Saturday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 1 Saturday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr data-w="0"><td class="day"><span class="short">Sun</span><span class="long">Sunday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 1 Sunday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 1 Sunday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 1 Sunday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr class="wk-total"><td colspan="4">Week 1 total</td><td class="hrs" id="wk0">0:00</td></tr><tr class="wk"><td colspan="5"><strong>Week 2</strong></td></tr><tr data-w="1"><td class="day"><span class="short">Mon</span><span class="long">Monday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 2 Monday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 2 Monday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 2 Monday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr data-w="1"><td class="day"><span class="short">Tue</span><span class="long">Tuesday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 2 Tuesday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 2 Tuesday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 2 Tuesday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr data-w="1"><td class="day"><span class="short">Wed</span><span class="long">Wednesday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 2 Wednesday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 2 Wednesday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 2 Wednesday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr data-w="1"><td class="day"><span class="short">Thu</span><span class="long">Thursday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 2 Thursday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 2 Thursday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 2 Thursday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr data-w="1"><td class="day"><span class="short">Fri</span><span class="long">Friday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 2 Friday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 2 Friday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 2 Friday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr data-w="1"><td class="day"><span class="short">Sat</span><span class="long">Saturday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 2 Saturday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 2 Saturday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 2 Saturday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr data-w="1"><td class="day"><span class="short">Sun</span><span class="long">Sunday</span></td><td class="c-in" data-label="Start"><input type="time" aria-label="Week 2 Sunday start" class="t-in"></td><td class="c-out" data-label="End"><input type="time" aria-label="Week 2 Sunday end" class="t-out"></td><td class="c-brk" data-label="Break (min)"><input type="number" aria-label="Week 2 Sunday break in minutes" class="t-brk" min="0" step="5" placeholder="0" inputmode="numeric"></td><td class="hrs">—</td></tr><tr class="wk-total"><td colspan="4">Week 2 total</td><td class="hrs" id="wk1">0:00</td></tr></tbody>
+      <tfoot><tr><td colspan="4">Total for the pay period</td><td class="hrs" id="total">0:00</td></tr></tfoot>
+    </table>
+  </div>
+
+  <h3>Pay and overtime <span style="font-weight:400;color:var(--muted)">(optional)</span></h3>
+  <div class="grid">
+    <div class="field"><label for="rate">Hourly rate ($)</label><input type="number" id="rate" min="0" step="0.01" placeholder="e.g. 18.50" inputmode="decimal"></div>
+    <div class="field"><label for="otAfter">Overtime after <span class="hint">hours per week</span></label><input type="number" id="otAfter" min="0" step="0.5" value="40" inputmode="decimal"></div>
+    <div class="field"><label for="otRate">Overtime rate</label>
+      <select id="otRate"><option value="1.5" selected>1.5× (time and a half)</option><option value="2">2× (double time)</option><option value="1">No overtime</option></select></div>
+  </div>
+
+  <div class="btn-row no-print">
+    <button type="button" id="print">Print or save as PDF</button>
+    <button type="button" class="secondary" id="fill">Fill weekdays 9 to 5</button>
+    <button type="button" class="secondary" id="clear">Clear all</button>
+  </div>
+
+  <div class="result" id="summary" aria-live="polite"></div>
+  <p class="no-print" style="color:var(--muted);font-size:.9rem;margin:12px 0 0">Your entries are saved in this browser only. Nothing is sent to us.</p>
+</div>
+
+<section class="content">
+  <h2>How to use this time card calculator</h2>
+  <ol>
+    <li>Enter your start and end time for each day in the two-week pay period. Leave days off blank.</li>
+    <li>Add any unpaid break in minutes.</li>
+    <li>Add your hourly rate to see estimated gross pay.</li>
+  </ol>
+  <h2>Why overtime is counted week by week</h2>
+  <p>Under the US Fair Labor Standards Act, overtime is based on each workweek on its own, not the whole pay period. If you work 45 hours in week 1 and 35 hours in week 2, you are owed 5 hours of overtime for week 1, even though the two-week total is exactly 80 hours. This calculator works out overtime separately for each week, the way payroll should.</p>
+</section>
+
+    <div class="ad-slot" data-slot="middle"></div>
+    <section class="faq"><h2>Frequently asked questions</h2><details><summary>What is a time card calculator?</summary><p>It adds up the hours you worked over a pay period from your daily start and end times, subtracts unpaid breaks, and works out overtime and pay.</p></details><details><summary>Is overtime calculated per week or per pay period?</summary><p>Per workweek. Under US federal law, overtime is owed for hours over 40 in a single workweek. Two weeks cannot be averaged together, so this calculator checks each week separately.</p></details><details><summary>How many hours is a full-time two-week pay period?</summary><p>A typical full-time two-week pay period is 80 hours: 40 hours a week for two weeks.</p></details><details><summary>Is my time card saved?</summary><p>Yes, in your own browser on this device only. Nothing is sent to ClockMath.</p></details></section>
+    <h2>More free time calculators</h2>
+    <div class="tool-links">
+      <a href="/">Hours Between Two Times<small>Shift length with breaks</small></a><a href="/lunch-break-calculator">Lunch Break Calculator<small>Hours worked minus lunch</small></a><a href="/timesheet-calculator">Timesheet Calculator<small>Weekly hours, overtime and pay</small></a><a href="/time-card-calculator">Time Card Calculator<small>Two-week pay period</small></a><a href="/overtime-calculator">Overtime Calculator<small>Overtime pay in seconds</small></a><a href="/decimal-hours-converter">Decimal Hours Converter<small>Minutes to decimal for payroll</small></a><a href="/add-subtract-time">Add or Subtract Time<small>What time will it be?</small></a><a href="/military-time-converter">Military Time Converter<small>24-hour time and chart</small></a><a href="/salary-to-hourly">Salary to Hourly<small>Hourly wage to yearly pay and back</small></a><a href="/days-between-dates">Days Between Dates<small>Days, weeks and business days</small></a><a href="/time-zone-converter">Time Zone Converter<small>Eastern, Central, Pacific and more</small></a><a href="/sleep-calculator">Sleep Calculator<small>Best time to go to bed</small></a>
+    </div>
+    <div class="ad-slot" data-slot="bottom"></div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer"><a href="/about">About</a><a href="/privacy-policy">Privacy Policy</a><a href="mailto:contact@clockmathtools.com">Contact</a></nav>
+    <div>&copy; <span id="year">2026</span> ClockMath. Free time calculators. Results are estimates; check your employer's rules for pay and breaks.</div>
+  </div>
+</footer>
+<script src="/common.js"></script>
+<script>
+(function () {
+  var KEY = 'clockmath-timecard-v1';
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#rows tr[data-w]'));
+  var rate = document.getElementById('rate'), otAfter = document.getElementById('otAfter'), otRate = document.getElementById('otRate');
+  var summary = document.getElementById('summary');
+
+  function save() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify({
+        rows: rows.map(function (r) { return [r.querySelector('.t-in').value, r.querySelector('.t-out').value, r.querySelector('.t-brk').value]; }),
+        rate: rate.value, otAfter: otAfter.value, otRate: otRate.value
+      }));
+    } catch (e) {}
+  }
+  function load() {
+    try {
+      var d = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (!d) return;
+      d.rows.forEach(function (v, i) {
+        if (!rows[i]) return;
+        rows[i].querySelector('.t-in').value = v[0] || '';
+        rows[i].querySelector('.t-out').value = v[1] || '';
+        rows[i].querySelector('.t-brk').value = v[2] || '';
+      });
+      if (d.rate) rate.value = d.rate;
+      if (d.otAfter) otAfter.value = d.otAfter;
+      if (d.otRate) otRate.value = d.otRate;
+    } catch (e) {}
+  }
+
+  function calc() {
+    var weeks = [0, 0];
+    rows.forEach(function (r) {
+      var a = CM.toMin(r.querySelector('.t-in').value), b = CM.toMin(r.querySelector('.t-out').value);
+      var brk = Math.max(0, CM.num(r.querySelector('.t-brk').value));
+      var cell = r.querySelector('.hrs');
+      if (a === null || b === null) { cell.textContent = '—'; return; }
+      var m = Math.max(0, CM.span(a, b) - brk);
+      weeks[+r.dataset.w] += m;
+      cell.textContent = CM.hmShort(m);
+    });
+    document.getElementById('wk0').textContent = CM.hmShort(weeks[0]);
+    document.getElementById('wk1').textContent = CM.hmShort(weeks[1]);
+    var total = weeks[0] + weeks[1];
+    document.getElementById('total').textContent = CM.hmShort(total);
+
+    var limit = Math.max(0, CM.num(otAfter.value)), mult = CM.num(otRate.value) || 1;
+    var reg = 0, over = 0;
+    weeks.forEach(function (m) {
+      var h = m / 60;
+      if (mult > 1) { reg += Math.min(h, limit); over += Math.max(0, h - limit); } else { reg += h; }
+    });
+    var r = CM.num(rate.value);
+    var html = '<div class="big">' + CM.hm(total) + '</div>' +
+      '<div class="sub">Pay period total: <strong>' + CM.dec(total) + '</strong> decimal hours</div>' +
+      '<div class="stats">' +
+        '<div class="stat"><div class="label">Regular hours</div><div class="value">' + reg.toFixed(2) + '</div></div>' +
+        '<div class="stat"><div class="label">Overtime hours</div><div class="value">' + over.toFixed(2) + '</div></div>';
+    if (r > 0) {
+      var rp = reg * r, op = over * r * mult;
+      html += '<div class="stat"><div class="label">Regular pay</div><div class="value">' + CM.money(rp) + '</div></div>' +
+        '<div class="stat"><div class="label">Overtime pay</div><div class="value">' + CM.money(op) + '</div></div>' +
+        '<div class="stat"><div class="label">Total pay (before tax)</div><div class="value">' + CM.money(rp + op) + '</div></div>';
+    }
+    summary.className = 'result';
+    summary.innerHTML = html + '</div>';
+    save();
+  }
+
+  load(); calc();
+  var card = document.querySelector('.card');
+  card.addEventListener('input', calc);
+  card.addEventListener('change', calc);
+  document.getElementById('print').addEventListener('click', function () { window.print(); });
+  document.getElementById('fill').addEventListener('click', function () {
+    rows.forEach(function (r, i) {
+      if (i % 7 > 4) return;
+      r.querySelector('.t-in').value = '09:00';
+      r.querySelector('.t-out').value = '17:00';
+      if (!r.querySelector('.t-brk').value) r.querySelector('.t-brk').value = '30';
+    });
+    calc();
+  });
+  document.getElementById('clear').addEventListener('click', function () {
+    rows.forEach(function (r) { r.querySelectorAll('input').forEach(function (i) { i.value = ''; }); });
+    calc();
+  });
+})();
+</script>
+</body>
+</html>

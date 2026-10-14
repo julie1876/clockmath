@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Military Time Converter and Chart (24-Hour Time) | ClockMath</title>
+<meta name="description" content="Convert standard time to military time and back instantly. Includes a full military time chart from 0000 to 2330 and easy conversion rules.">
+<link rel="canonical" href="https://clockmathtools.com/military-time-converter">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ClockMath">
+<meta property="og:title" content="Military Time Converter and Chart (24-Hour Time) | ClockMath">
+<meta property="og:description" content="Convert standard time to military time and back instantly. Includes a full military time chart from 0000 to 2330 and easy conversion rules.">
+<meta property="og:url" content="https://clockmathtools.com/military-time-converter">
+<meta name="theme-color" content="#1f5fbf">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<!-- AdSense: once approved, paste Google's <script> tag here, on every page. -->
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is 1700 in military time?", "acceptedAnswer": {"@type": "Answer", "text": "1700 is 5:00 PM. Subtract 12 from any hour above 12 to get the PM time."}}, {"@type": "Question", "name": "What is midnight in military time?", "acceptedAnswer": {"@type": "Answer", "text": "Midnight is 0000. One minute after midnight is 0001, and 12:30 AM is 0030."}}, {"@type": "Question", "name": "How do you say military time out loud?", "acceptedAnswer": {"@type": "Answer", "text": "Say the four digits as two pairs. 1430 is \"fourteen thirty\", 0900 is \"zero nine hundred\", and 2000 is \"twenty hundred\"."}}, {"@type": "Question", "name": "Is military time the same as 24-hour time?", "acceptedAnswer": {"@type": "Answer", "text": "Nearly. Both run from 00:00 to 23:59. Military time is usually written without a colon (1430), while 24-hour time often has one (14:30)."}}]}</script>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="30" height="30"><span class="name">Clock<b>Math</b></span></a>
+    <nav class="site-nav" aria-label="Main"><a href="/">Hours Between Times</a><a href="/lunch-break-calculator">Lunch Break</a><a href="/timesheet-calculator">Timesheet</a><a href="/military-time-converter" aria-current="page">Military Time</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h1>Military Time Converter</h1>
+    <p class="lead">Convert between standard (12-hour) time and military (24-hour) time, with a full chart below.</p>
+    <div class="ad-slot" data-slot="top"></div>
+    
+<div class="card">
+  <div class="grid">
+    <form id="toMil" novalidate>
+      <div class="field"><label for="std">Standard time</label><input type="time" id="std" value="14:30"></div>
+      <div class="result" id="out-mil" aria-live="polite"></div>
+    </form>
+    <form id="toStd" novalidate>
+      <div class="field"><label for="mil">Military time <span class="hint">4 digits, e.g. 1430</span></label><input type="text" id="mil" value="1430" maxlength="5" inputmode="numeric" autocomplete="off"></div>
+      <div class="result" id="out-std" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+
+<section class="content">
+  <h2>How to convert to military time</h2>
+  <ul>
+    <li><strong>AM times:</strong> keep the hour and add a leading zero if needed. 7:15 AM is 0715.</li>
+    <li><strong>12 AM (midnight):</strong> is 0000. 12:45 AM is 0045.</li>
+    <li><strong>12 PM (noon):</strong> stays 1200.</li>
+    <li><strong>PM times after noon:</strong> add 12 to the hour. 3:30 PM is 1530.</li>
+  </ul>
+  <p>To go back, subtract 12 from any hour above 12. 2100 is 9:00 PM. Military time is usually said as "fourteen thirty" for 1430, and "zero seven hundred" for 0700.</p>
+
+  <h2>Military time chart</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Standard</th><th>Military</th><th>Standard</th><th>Military</th></tr></thead>
+    <tbody><tr><td>12:00 AM</td><td>0000</td><td>12:30 AM</td><td>0030</td></tr><tr><td>1:00 AM</td><td>0100</td><td>1:30 AM</td><td>0130</td></tr><tr><td>2:00 AM</td><td>0200</td><td>2:30 AM</td><td>0230</td></tr><tr><td>3:00 AM</td><td>0300</td><td>3:30 AM</td><td>0330</td></tr><tr><td>4:00 AM</td><td>0400</td><td>4:30 AM</td><td>0430</td></tr><tr><td>5:00 AM</td><td>0500</td><td>5:30 AM</td><td>0530</td></tr><tr><td>6:00 AM</td><td>0600</td><td>6:30 AM</td><td>0630</td></tr><tr><td>7:00 AM</td><td>0700</td><td>7:30 AM</td><td>0730</td></tr><tr><td>8:00 AM</td><td>0800</td><td>8:30 AM</td><td>0830</td></tr><tr><td>9:00 AM</td><td>0900</td><td>9:30 AM</td><td>0930</td></tr><tr><td>10:00 AM</td><td>1000</td><td>10:30 AM</td><td>1030</td></tr><tr><td>11:00 AM</td><td>1100</td><td>11:30 AM</td><td>1130</td></tr><tr><td>12:00 PM</td><td>1200</td><td>12:30 PM</td><td>1230</td></tr><tr><td>1:00 PM</td><td>1300</td><td>1:30 PM</td><td>1330</td></tr><tr><td>2:00 PM</td><td>1400</td><td>2:30 PM</td><td>1430</td></tr><tr><td>3:00 PM</td><td>1500</td><td>3:30 PM</td><td>1530</td></tr><tr><td>4:00 PM</td><td>1600</td><td>4:30 PM</td><td>1630</td></tr><tr><td>5:00 PM</td><td>1700</td><td>5:30 PM</td><td>1730</td></tr><tr><td>6:00 PM</td><td>1800</td><td>6:30 PM</td><td>1830</td></tr><tr><td>7:00 PM</td><td>1900</td><td>7:30 PM</td><td>1930</td></tr><tr><td>8:00 PM</td><td>2000</td><td>8:30 PM</td><td>2030</td></tr><tr><td>9:00 PM</td><td>2100</td><td>9:30 PM</td><td>2130</td></tr><tr><td>10:00 PM</td><td>2200</td><td>10:30 PM</td><td>2230</td></tr><tr><td>11:00 PM</td><td>2300</td><td>11:30 PM</td><td>2330</td></tr></tbody>
+  </table></div>
+</section>
+
+    <div class="ad-slot" data-slot="middle"></div>
+    <section class="faq"><h2>Frequently asked questions</h2><details><summary>What is 1700 in military time?</summary><p>1700 is 5:00 PM. Subtract 12 from any hour above 12 to get the PM time.</p></details><details><summary>What is midnight in military time?</summary><p>Midnight is 0000. One minute after midnight is 0001, and 12:30 AM is 0030.</p></details><details><summary>How do you say military time out loud?</summary><p>Say the four digits as two pairs. 1430 is "fourteen thirty", 0900 is "zero nine hundred", and 2000 is "twenty hundred".</p></details><details><summary>Is military time the same as 24-hour time?</summary><p>Nearly. Both run from 00:00 to 23:59. Military time is usually written without a colon (1430), while 24-hour time often has one (14:30).</p></details></section>
+    <h2>More free time calculators</h2>
+    <div class="tool-links">
+      <a href="/">Hours Between Two Times<small>Shift length with breaks</small></a><a href="/lunch-break-calculator">Lunch Break Calculator<small>Hours worked minus lunch</small></a><a href="/timesheet-calculator">Timesheet Calculator<small>Weekly hours, overtime and pay</small></a><a href="/time-card-calculator">Time Card Calculator<small>Two-week pay period</small></a><a href="/overtime-calculator">Overtime Calculator<small>Overtime pay in seconds</small></a><a href="/decimal-hours-converter">Decimal Hours Converter<small>Minutes to decimal for payroll</small></a><a href="/add-subtract-time">Add or Subtract Time<small>What time will it be?</small></a><a href="/military-time-converter">Military Time Converter<small>24-hour time and chart</small></a><a href="/salary-to-hourly">Salary to Hourly<small>Hourly wage to yearly pay and back</small></a><a href="/days-between-dates">Days Between Dates<small>Days, weeks and business days</small></a><a href="/time-zone-converter">Time Zone Converter<small>Eastern, Central, Pacific and more</small></a><a href="/sleep-calculator">Sleep Calculator<small>Best time to go to bed</small></a>
+    </div>
+    <div class="ad-slot" data-slot="bottom"></div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer"><a href="/about">About</a><a href="/privacy-policy">Privacy Policy</a><a href="mailto:contact@clockmathtools.com">Contact</a></nav>
+    <div>&copy; <span id="year">2026</span> ClockMath. Free time calculators. Results are estimates; check your employer's rules for pay and breaks.</div>
+  </div>
+</footer>
+<script src="/common.js"></script>
+<script>
+(function () {
+  var std = document.getElementById('std'), mil = document.getElementById('mil');
+  var om = document.getElementById('out-mil'), os = document.getElementById('out-std');
+  document.querySelectorAll('form').forEach(function (f) { f.addEventListener('submit', function (e) { e.preventDefault(); }); });
+
+  function a() {
+    var m = CM.toMin(std.value);
+    if (m === null) { om.className = 'result error'; om.innerHTML = '<div class="big">Enter a time.</div>'; return; }
+    om.className = 'result';
+    om.innerHTML = '<div class="big">' + CM.military(m) + '</div><div class="sub">' + CM.clock12(m) + ' in military time</div>';
+  }
+  function b() {
+    var v = mil.value.replace(/[^0-9]/g, '');
+    if (v.length === 3) v = '0' + v;
+    var ok = v.length === 4 && +v.slice(0, 2) < 24 && +v.slice(2) < 60;
+    if (!ok) { os.className = 'result error'; os.innerHTML = '<div class="big">Enter 4 digits, from 0000 to 2359.</div>'; return; }
+    var m = +v.slice(0, 2) * 60 + +v.slice(2);
+    os.className = 'result';
+    os.innerHTML = '<div class="big">' + CM.clock12(m) + '</div><div class="sub">' + v + ' in standard time</div>';
+  }
+  std.addEventListener('input', a);
+  mil.addEventListener('input', b);
+  a(); b();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time Zone Converter: Eastern, Central, Pacific and World | ClockMath</title>
+<meta name="description" content="Convert a time between US time zones (Eastern, Central, Mountain, Pacific) and world cities. Handles daylight saving time automatically.">
+<link rel="canonical" href="https://clockmathtools.com/time-zone-converter">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ClockMath">
+<meta property="og:title" content="Time Zone Converter: Eastern, Central, Pacific and World | ClockMath">
+<meta property="og:description" content="Convert a time between US time zones (Eastern, Central, Mountain, Pacific) and world cities. Handles daylight saving time automatically.">
+<meta property="og:url" content="https://clockmathtools.com/time-zone-converter">
+<meta name="theme-color" content="#1f5fbf">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<!-- AdSense: once approved, paste Google's <script> tag here, on every page. -->
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "If it is 12 PM Eastern, what time is it Pacific?", "acceptedAnswer": {"@type": "Answer", "text": "When it is 12:00 PM Eastern Time, it is 9:00 AM Pacific Time. Pacific is 3 hours behind Eastern."}}, {"@type": "Question", "name": "How many hours ahead is Eastern from Central?", "acceptedAnswer": {"@type": "Answer", "text": "Eastern Time is 1 hour ahead of Central Time. 3:00 PM Central is 4:00 PM Eastern."}}, {"@type": "Question", "name": "Does Arizona change its clocks?", "acceptedAnswer": {"@type": "Answer", "text": "Most of Arizona does not use daylight saving time. In summer it matches Pacific Time; in winter it matches Mountain Time."}}, {"@type": "Question", "name": "Does this converter handle daylight saving time?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It uses your browser's built-in time zone data, so the result is correct for the date you choose."}}]}</script>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="30" height="30"><span class="name">Clock<b>Math</b></span></a>
+    <nav class="site-nav" aria-label="Main"><a href="/">Hours Between Times</a><a href="/lunch-break-calculator">Lunch Break</a><a href="/timesheet-calculator">Timesheet</a><a href="/military-time-converter">Military Time</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h1>Time Zone Converter</h1>
+    <p class="lead">Convert a time between US time zones and major world cities. Daylight saving time is handled for you.</p>
+    <div class="ad-slot" data-slot="top"></div>
+    
+<div class="card">
+  <form id="tz" novalidate>
+    <div class="grid">
+      <div class="field"><label for="dt">Date</label><input type="date" id="dt"></div>
+      <div class="field"><label for="tm">Time</label><input type="time" id="tm" value="09:00"></div>
+      <div class="field"><label for="from">From</label><select id="from"><option value="America/New_York">Eastern Time (New York, Miami)</option><option value="America/Chicago">Central Time (Chicago, Dallas)</option><option value="America/Denver">Mountain Time (Denver)</option><option value="America/Phoenix">Arizona (Phoenix)</option><option value="America/Los_Angeles">Pacific Time (Los Angeles, Seattle)</option><option value="America/Anchorage">Alaska (Anchorage)</option><option value="Pacific/Honolulu">Hawaii (Honolulu)</option><option value="America/Puerto_Rico">Atlantic Time (Puerto Rico)</option><option value="America/Toronto">Toronto</option><option value="America/Mexico_City">Mexico City</option><option value="America/Sao_Paulo">São Paulo</option><option value="UTC">UTC / GMT</option><option value="Europe/London">London</option><option value="Europe/Paris">Paris, Berlin, Madrid</option><option value="Africa/Lagos">Lagos</option><option value="Africa/Johannesburg">Johannesburg</option><option value="Europe/Moscow">Moscow</option><option value="Asia/Dubai">Dubai</option><option value="Asia/Kolkata">India (Mumbai, Delhi)</option><option value="Asia/Manila">Manila</option><option value="Asia/Shanghai">China (Beijing, Shanghai)</option><option value="Asia/Tokyo">Tokyo</option><option value="Australia/Sydney">Sydney</option><option value="Pacific/Auckland">Auckland</option></select></div>
+      <div class="field"><label for="to">To</label><select id="to"><option value="America/New_York">Eastern Time (New York, Miami)</option><option value="America/Chicago">Central Time (Chicago, Dallas)</option><option value="America/Denver">Mountain Time (Denver)</option><option value="America/Phoenix">Arizona (Phoenix)</option><option value="America/Los_Angeles">Pacific Time (Los Angeles, Seattle)</option><option value="America/Anchorage">Alaska (Anchorage)</option><option value="Pacific/Honolulu">Hawaii (Honolulu)</option><option value="America/Puerto_Rico">Atlantic Time (Puerto Rico)</option><option value="America/Toronto">Toronto</option><option value="America/Mexico_City">Mexico City</option><option value="America/Sao_Paulo">São Paulo</option><option value="UTC">UTC / GMT</option><option value="Europe/London">London</option><option value="Europe/Paris">Paris, Berlin, Madrid</option><option value="Africa/Lagos">Lagos</option><option value="Africa/Johannesburg">Johannesburg</option><option value="Europe/Moscow">Moscow</option><option value="Asia/Dubai">Dubai</option><option value="Asia/Kolkata">India (Mumbai, Delhi)</option><option value="Asia/Manila">Manila</option><option value="Asia/Shanghai">China (Beijing, Shanghai)</option><option value="Asia/Tokyo">Tokyo</option><option value="Australia/Sydney">Sydney</option><option value="Pacific/Auckland">Auckland</option></select></div>
+    </div>
+    <div class="btn-row"><button type="button" class="secondary" id="swap">Swap</button><button type="button" class="secondary" id="nowbtn">Use current time</button></div>
+  </form>
+  <div class="result" id="out" aria-live="polite"></div>
+</div>
+
+<h2>Right now in US time zones</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Time zone</th><th>Current time</th></tr></thead>
+  <tbody id="now"></tbody>
+</table></div>
+
+<section class="content">
+  <h2>US time zone differences</h2>
+  <p>The mainland US has four main time zones. Each one is 1 hour behind the zone to its east:</p>
+  <ul>
+    <li><strong>Eastern</strong> (New York): 12:00 PM</li>
+    <li><strong>Central</strong> (Chicago): 11:00 AM</li>
+    <li><strong>Mountain</strong> (Denver): 10:00 AM</li>
+    <li><strong>Pacific</strong> (Los Angeles): 9:00 AM</li>
+  </ul>
+  <p>Most of the US moves clocks forward 1 hour in March and back 1 hour in November for daylight saving time. Arizona (except the Navajo Nation) and Hawaii do not, so their difference from other states changes during the year. This converter accounts for daylight saving time automatically for the date you pick.</p>
+</section>
+
+    <div class="ad-slot" data-slot="middle"></div>
+    <section class="faq"><h2>Frequently asked questions</h2><details><summary>If it is 12 PM Eastern, what time is it Pacific?</summary><p>When it is 12:00 PM Eastern Time, it is 9:00 AM Pacific Time. Pacific is 3 hours behind Eastern.</p></details><details><summary>How many hours ahead is Eastern from Central?</summary><p>Eastern Time is 1 hour ahead of Central Time. 3:00 PM Central is 4:00 PM Eastern.</p></details><details><summary>Does Arizona change its clocks?</summary><p>Most of Arizona does not use daylight saving time. In summer it matches Pacific Time; in winter it matches Mountain Time.</p></details><details><summary>Does this converter handle daylight saving time?</summary><p>Yes. It uses your browser's built-in time zone data, so the result is correct for the date you choose.</p></details></section>
+    <h2>More free time calculators</h2>
+    <div class="tool-links">
+      <a href="/">Hours Between Two Times<small>Shift length with breaks</small></a><a href="/lunch-break-calculator">Lunch Break Calculator<small>Hours worked minus lunch</small></a><a href="/timesheet-calculator">Timesheet Calculator<small>Weekly hours, overtime and pay</small></a><a href="/time-card-calculator">Time Card Calculator<small>Two-week pay period</small></a><a href="/overtime-calculator">Overtime Calculator<small>Overtime pay in seconds</small></a><a href="/decimal-hours-converter">Decimal Hours Converter<small>Minutes to decimal for payroll</small></a><a href="/add-subtract-time">Add or Subtract Time<small>What time will it be?</small></a><a href="/military-time-converter">Military Time Converter<small>24-hour time and chart</small></a><a href="/salary-to-hourly">Salary to Hourly<small>Hourly wage to yearly pay and back</small></a><a href="/days-between-dates">Days Between Dates<small>Days, weeks and business days</small></a><a href="/time-zone-converter">Time Zone Converter<small>Eastern, Central, Pacific and more</small></a><a href="/sleep-calculator">Sleep Calculator<small>Best time to go to bed</small></a>
+    </div>
+    <div class="ad-slot" data-slot="bottom"></div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer"><a href="/about">About</a><a href="/privacy-policy">Privacy Policy</a><a href="mailto:contact@clockmathtools.com">Contact</a></nav>
+    <div>&copy; <span id="year">2026</span> ClockMath. Free time calculators. Results are estimates; check your employer's rules for pay and breaks.</div>
+  </div>
+</footer>
+<script src="/common.js"></script>
+<script>
+(function () {
+  var f = document.getElementById('tz'), out = document.getElementById('out');
+  function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  var local = 'America/New_York';
+  try { local = Intl.DateTimeFormat().resolvedOptions().timeZone || local; } catch (e) {}
+  f.dt.value = iso(new Date());
+  if ([].some.call(f.from.options, function (o) { return o.value === local; })) f.from.value = local; else f.from.value = 'America/New_York';
+  f.to.value = f.from.value === 'America/Los_Angeles' ? 'America/New_York' : 'America/Los_Angeles';
+
+  // offset of a zone (minutes) at a given UTC instant
+  function offset(ms, tz) {
+    var p = {};
+    new Intl.DateTimeFormat('en-US', { timeZone: tz, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' })
+      .formatToParts(new Date(ms)).forEach(function (x) { p[x.type] = x.value; });
+    var asUTC = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour % 24, +p.minute, +p.second);
+    return Math.round((asUTC - ms) / 60000);
+  }
+  function fmt(ms, tz, withDate) {
+    var o = { timeZone: tz, hour: 'numeric', minute: '2-digit' };
+    if (withDate) { o.weekday = 'short'; o.month = 'short'; o.day = 'numeric'; }
+    return new Date(ms).toLocaleString('en-US', o);
+  }
+  function abbr(ms, tz) {
+    try {
+      var p = new Intl.DateTimeFormat('en-US', { timeZone: tz, timeZoneName: 'short' }).formatToParts(new Date(ms));
+      for (var i = 0; i < p.length; i++) if (p[i].type === 'timeZoneName') return p[i].value;
+    } catch (e) {}
+    return '';
+  }
+  function name(sel) { return sel.options[sel.selectedIndex].text; }
+
+  function run() {
+    var t = CM.toMin(f.tm.value);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(f.dt.value) || t === null) { out.className = 'result error'; out.innerHTML = '<div class="big">Pick a date and time.</div>'; return; }
+    var p = f.dt.value.split('-');
+    var wall = Date.UTC(+p[0], +p[1] - 1, +p[2], Math.floor(t / 60), t % 60);
+    var utc = wall - offset(wall, f.from.value) * 60000;
+    utc = wall - offset(utc, f.from.value) * 60000;
+    var diff = (offset(utc, f.to.value) - offset(utc, f.from.value)) / 60;
+    var diffTxt = diff === 0 ? 'the same time' : Math.abs(diff) + (Math.abs(diff) === 1 ? ' hour ' : ' hours ') + (diff > 0 ? 'ahead' : 'behind');
+    out.className = 'result';
+    out.innerHTML = '<div class="big">' + fmt(utc, f.to.value, true) + ' <span style="font-size:1rem;font-weight:600">' + abbr(utc, f.to.value) + '</span></div>' +
+      '<div class="sub">' + fmt(utc, f.from.value, true) + ' ' + abbr(utc, f.from.value) + ' in ' + name(f.from) + ' is ' + fmt(utc, f.to.value, true) + ' in ' + name(f.to) + '.</div>' +
+      '<div class="note">' + name(f.to) + ' is ' + diffTxt + ' on this date.</div>';
+  }
+  function nowTable() {
+    var rows = ['America/New_York', 'America/Chicago', 'America/Denver', 'America/Phoenix', 'America/Los_Angeles', 'America/Anchorage', 'Pacific/Honolulu'];
+    var ms = Date.now();
+    document.getElementById('now').innerHTML = rows.map(function (z) {
+      var o = [].filter.call(f.from.options, function (x) { return x.value === z; })[0];
+      return '<tr><td>' + o.text + '</td><td><strong>' + fmt(ms, z, true) + '</strong> ' + abbr(ms, z) + '</td></tr>';
+    }).join('');
+  }
+  f.addEventListener('input', run);
+  f.addEventListener('change', run);
+  f.addEventListener('submit', function (e) { e.preventDefault(); });
+  document.getElementById('swap').addEventListener('click', function () { var a = f.from.value; f.from.value = f.to.value; f.to.value = a; run(); });
+  document.getElementById('nowbtn').addEventListener('click', function () {
+    var d = new Date(); f.dt.value = iso(d);
+    f.tm.value = ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2);
+    if (f.from.value !== local && [].some.call(f.from.options, function (o) { return o.value === local; })) f.from.value = local;
+    run();
+  });
+  run(); nowTable(); setInterval(nowTable, 30000);
+})();
+</script>
+</body>
+</html>

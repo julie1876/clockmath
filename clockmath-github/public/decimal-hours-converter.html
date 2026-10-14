@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decimal Hours Converter: Minutes to Decimal Chart | ClockMath</title>
+<meta name="description" content="Convert hours and minutes to decimal hours and back for payroll and timesheets. Includes a full minutes-to-decimal chart from 1 to 60 minutes.">
+<link rel="canonical" href="https://clockmathtools.com/decimal-hours-converter">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ClockMath">
+<meta property="og:title" content="Decimal Hours Converter: Minutes to Decimal Chart | ClockMath">
+<meta property="og:description" content="Convert hours and minutes to decimal hours and back for payroll and timesheets. Includes a full minutes-to-decimal chart from 1 to 60 minutes.">
+<meta property="og:url" content="https://clockmathtools.com/decimal-hours-converter">
+<meta name="theme-color" content="#1f5fbf">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<!-- AdSense: once approved, paste Google's <script> tag here, on every page. -->
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is 15 minutes in decimal hours?", "acceptedAnswer": {"@type": "Answer", "text": "15 minutes is 0.25 hours. 30 minutes is 0.5, and 45 minutes is 0.75."}}, {"@type": "Question", "name": "What is 7.5 hours in hours and minutes?", "acceptedAnswer": {"@type": "Answer", "text": "7.5 hours is 7 hours 30 minutes. Multiply the decimal part (0.5) by 60 to get the minutes."}}, {"@type": "Question", "name": "How do I convert minutes to decimal?", "acceptedAnswer": {"@type": "Answer", "text": "Divide the minutes by 60. For example, 20 minutes \u00f7 60 = 0.33 hours."}}, {"@type": "Question", "name": "What is 8.25 hours in time?", "acceptedAnswer": {"@type": "Answer", "text": "8.25 hours is 8 hours 15 minutes, because 0.25 \u00d7 60 = 15."}}]}</script>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="30" height="30"><span class="name">Clock<b>Math</b></span></a>
+    <nav class="site-nav" aria-label="Main"><a href="/">Hours Between Times</a><a href="/lunch-break-calculator">Lunch Break</a><a href="/timesheet-calculator">Timesheet</a><a href="/military-time-converter">Military Time</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h1>Decimal Hours Converter</h1>
+    <p class="lead">Convert hours and minutes to decimal hours for payroll, or turn decimal hours back into hours and minutes.</p>
+    <div class="ad-slot" data-slot="top"></div>
+    
+<div class="card">
+  <div class="grid">
+    <form id="toDec" novalidate>
+      <h3 style="margin-top:0">Hours and minutes → decimal</h3>
+      <div class="grid">
+        <div class="field"><label for="hh">Hours</label><input type="number" id="hh" min="0" step="1" value="7" inputmode="numeric"></div>
+        <div class="field"><label for="mm">Minutes</label><input type="number" id="mm" min="0" max="59" step="1" value="45" inputmode="numeric"></div>
+      </div>
+      <div class="result" id="out-dec" aria-live="polite"></div>
+    </form>
+    <form id="toHm" novalidate>
+      <h3 style="margin-top:0">Decimal → hours and minutes</h3>
+      <div class="field"><label for="dd">Decimal hours</label><input type="number" id="dd" min="0" step="0.01" value="7.75" inputmode="decimal"></div>
+      <div class="result" id="out-hm" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+
+<section class="content">
+  <h2>How to convert minutes to decimal hours</h2>
+  <p>Divide the minutes by 60, then add the whole hours. For example, 7 hours 45 minutes is 7 + (45 ÷ 60) = <strong>7.75 hours</strong>.</p>
+  <p>To go the other way, multiply the decimal part by 60. 7.75 hours is 7 hours and 0.75 × 60 = 45 minutes.</p>
+  <p>Payroll systems use decimal hours because they are easy to multiply by a pay rate: 7.75 hours × $20 = $155.</p>
+  <h2>Minutes to decimal chart</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Minutes</th><th>Decimal</th><th>Minutes</th><th>Decimal</th></tr></thead>
+    <tbody><tr><td>1</td><td>0.02</td><td>31</td><td>0.52</td></tr><tr><td>2</td><td>0.03</td><td>32</td><td>0.53</td></tr><tr><td>3</td><td>0.05</td><td>33</td><td>0.55</td></tr><tr><td>4</td><td>0.07</td><td>34</td><td>0.57</td></tr><tr><td>5</td><td>0.08</td><td>35</td><td>0.58</td></tr><tr><td>6</td><td>0.10</td><td>36</td><td>0.60</td></tr><tr><td>7</td><td>0.12</td><td>37</td><td>0.62</td></tr><tr><td>8</td><td>0.13</td><td>38</td><td>0.63</td></tr><tr><td>9</td><td>0.15</td><td>39</td><td>0.65</td></tr><tr><td>10</td><td>0.17</td><td>40</td><td>0.67</td></tr><tr><td>11</td><td>0.18</td><td>41</td><td>0.68</td></tr><tr><td>12</td><td>0.20</td><td>42</td><td>0.70</td></tr><tr><td>13</td><td>0.22</td><td>43</td><td>0.72</td></tr><tr><td>14</td><td>0.23</td><td>44</td><td>0.73</td></tr><tr><td>15</td><td>0.25</td><td>45</td><td>0.75</td></tr><tr><td>16</td><td>0.27</td><td>46</td><td>0.77</td></tr><tr><td>17</td><td>0.28</td><td>47</td><td>0.78</td></tr><tr><td>18</td><td>0.30</td><td>48</td><td>0.80</td></tr><tr><td>19</td><td>0.32</td><td>49</td><td>0.82</td></tr><tr><td>20</td><td>0.33</td><td>50</td><td>0.83</td></tr><tr><td>21</td><td>0.35</td><td>51</td><td>0.85</td></tr><tr><td>22</td><td>0.37</td><td>52</td><td>0.87</td></tr><tr><td>23</td><td>0.38</td><td>53</td><td>0.88</td></tr><tr><td>24</td><td>0.40</td><td>54</td><td>0.90</td></tr><tr><td>25</td><td>0.42</td><td>55</td><td>0.92</td></tr><tr><td>26</td><td>0.43</td><td>56</td><td>0.93</td></tr><tr><td>27</td><td>0.45</td><td>57</td><td>0.95</td></tr><tr><td>28</td><td>0.47</td><td>58</td><td>0.97</td></tr><tr><td>29</td><td>0.48</td><td>59</td><td>0.98</td></tr><tr><td>30</td><td>0.50</td><td>60</td><td>1.00</td></tr></tbody>
+  </table></div>
+</section>
+
+    <div class="ad-slot" data-slot="middle"></div>
+    <section class="faq"><h2>Frequently asked questions</h2><details><summary>What is 15 minutes in decimal hours?</summary><p>15 minutes is 0.25 hours. 30 minutes is 0.5, and 45 minutes is 0.75.</p></details><details><summary>What is 7.5 hours in hours and minutes?</summary><p>7.5 hours is 7 hours 30 minutes. Multiply the decimal part (0.5) by 60 to get the minutes.</p></details><details><summary>How do I convert minutes to decimal?</summary><p>Divide the minutes by 60. For example, 20 minutes ÷ 60 = 0.33 hours.</p></details><details><summary>What is 8.25 hours in time?</summary><p>8.25 hours is 8 hours 15 minutes, because 0.25 × 60 = 15.</p></details></section>
+    <h2>More free time calculators</h2>
+    <div class="tool-links">
+      <a href="/">Hours Between Two Times<small>Shift length with breaks</small></a><a href="/lunch-break-calculator">Lunch Break Calculator<small>Hours worked minus lunch</small></a><a href="/timesheet-calculator">Timesheet Calculator<small>Weekly hours, overtime and pay</small></a><a href="/time-card-calculator">Time Card Calculator<small>Two-week pay period</small></a><a href="/overtime-calculator">Overtime Calculator<small>Overtime pay in seconds</small></a><a href="/decimal-hours-converter">Decimal Hours Converter<small>Minutes to decimal for payroll</small></a><a href="/add-subtract-time">Add or Subtract Time<small>What time will it be?</small></a><a href="/military-time-converter">Military Time Converter<small>24-hour time and chart</small></a><a href="/salary-to-hourly">Salary to Hourly<small>Hourly wage to yearly pay and back</small></a><a href="/days-between-dates">Days Between Dates<small>Days, weeks and business days</small></a><a href="/time-zone-converter">Time Zone Converter<small>Eastern, Central, Pacific and more</small></a><a href="/sleep-calculator">Sleep Calculator<small>Best time to go to bed</small></a>
+    </div>
+    <div class="ad-slot" data-slot="bottom"></div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer"><a href="/about">About</a><a href="/privacy-policy">Privacy Policy</a><a href="mailto:contact@clockmathtools.com">Contact</a></nav>
+    <div>&copy; <span id="year">2026</span> ClockMath. Free time calculators. Results are estimates; check your employer's rules for pay and breaks.</div>
+  </div>
+</footer>
+<script src="/common.js"></script>
+<script>
+(function () {
+  var hh = document.getElementById('hh'), mm = document.getElementById('mm'), dd = document.getElementById('dd');
+  var o1 = document.getElementById('out-dec'), o2 = document.getElementById('out-hm');
+  document.querySelectorAll('form').forEach(function (f) { f.addEventListener('submit', function (e) { e.preventDefault(); }); });
+  function a() {
+    var t = Math.max(0, CM.num(hh.value)) * 60 + Math.max(0, CM.num(mm.value));
+    o1.className = 'result';
+    o1.innerHTML = '<div class="big">' + (t / 60).toFixed(2) + ' hours</div><div class="sub">' + CM.hm(t) + '</div>';
+  }
+  function b() {
+    var t = Math.round(Math.max(0, CM.num(dd.value)) * 60);
+    o2.className = 'result';
+    o2.innerHTML = '<div class="big">' + CM.hm(t) + '</div><div class="sub">' + CM.hmShort(t) + ' on a clock</div>';
+  }
+  hh.addEventListener('input', a); mm.addEventListener('input', a); dd.addEventListener('input', b);
+  a(); b();
+})();
+</script>
+</body>
+</html>
