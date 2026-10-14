@@ -68,7 +68,98 @@ var CM = (function () {
   return { toMin: toMin, span: span, hm: hm, hmShort: hmShort, dec: dec, clock12: clock12, military: military, money: money, num: num };
 })();
 
+/* List of every calculator. To add a new one, add a line here and it appears in the "All calculators" menu on every page. */
+var CM_TOOLS = [
+  ['/', 'Hours Between Two Times'],
+  ['/lunch-break-calculator', 'Lunch Break Calculator'],
+  ['/timesheet-calculator', 'Timesheet Calculator'],
+  ['/time-card-calculator', 'Time Card Calculator'],
+  ['/overtime-calculator', 'Overtime Calculator'],
+  ['/decimal-hours-converter', 'Decimal Hours Converter'],
+  ['/add-subtract-time', 'Add or Subtract Time'],
+  ['/military-time-converter', 'Military Time Converter'],
+  ['/salary-to-hourly', 'Salary to Hourly'],
+  ['/days-between-dates', 'Days Between Dates'],
+  ['/time-zone-converter', 'Time Zone Converter'],
+  ['/sleep-calculator', 'Sleep Calculator']
+];
+
+function cmAllMenu() {
+  var nav = document.querySelector('.site-nav');
+  if (!nav || document.getElementById('cm-all')) return;
+  var here = location.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+
+  var wrap = document.createElement('div');
+  wrap.className = 'all-menu';
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.id = 'cm-all';
+  btn.className = 'all-btn';
+  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-controls', 'cm-all-list');
+  btn.innerHTML = 'All calculators <span aria-hidden="true">▾</span>';
+
+  var list = document.createElement('div');
+  list.id = 'cm-all-list';
+  list.className = 'all-list';
+  list.hidden = true;
+  CM_TOOLS.forEach(function (t) {
+    var a = document.createElement('a');
+    a.href = t[0];
+    a.textContent = t[1];
+    if (t[0] === here) a.setAttribute('aria-current', 'page');
+    list.appendChild(a);
+  });
+
+  function setOpen(open) {
+    list.hidden = !open;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); setOpen(list.hidden); });
+  document.addEventListener('click', function (e) { if (!wrap.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setOpen(false); btn.focus(); } });
+
+  wrap.appendChild(btn);
+  wrap.appendChild(list);
+  nav.appendChild(wrap);
+}
+
+/* "Switch calculator" dropdown beside the main title (calculator pages only) */
+function cmTitleMenu() {
+  var h1 = document.querySelector('main h1');
+  if (!h1 || document.getElementById('cm-switch')) return;
+  var here = location.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  var isTool = CM_TOOLS.some(function (t) { return t[0] === here; });
+  if (!isTool) return;
+
+  var row = document.createElement('div');
+  row.className = 'title-row';
+  h1.parentNode.insertBefore(row, h1);
+  row.appendChild(h1);
+
+  var box = document.createElement('div');
+  box.className = 'title-switch';
+  var label = document.createElement('label');
+  label.setAttribute('for', 'cm-switch');
+  label.textContent = 'Switch calculator';
+  var sel = document.createElement('select');
+  sel.id = 'cm-switch';
+  CM_TOOLS.forEach(function (t) {
+    var o = document.createElement('option');
+    o.value = t[0];
+    o.textContent = t[1];
+    if (t[0] === here) o.selected = true;
+    sel.appendChild(o);
+  });
+  sel.addEventListener('change', function () { if (sel.value !== here) location.href = sel.value; });
+  box.appendChild(label);
+  box.appendChild(sel);
+  row.appendChild(box);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
+  cmAllMenu();
+  cmTitleMenu();
 });
