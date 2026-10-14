@@ -379,3 +379,25 @@ tbody tr:nth-child(even) { background: #fafbfd; }
   .timesheet tbody tr.wk td { display: block; border-radius: 8px; }
   .timesheet tbody tr.wk-total td:first-child { grid-column: 1; }
 }
+
+/* Break-law pages */
+.pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: .9rem; font-weight: 700; }
+.pill.yes { background: var(--accent); color: #fff; }
+.pill.no { background: #e9ebf1; color: var(--muted); }
+.muted { color: var(--muted); }
+.note-box {
+  background: var(--warn-soft);
+  border: 1px solid #f1d39d;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: .95rem;
+  margin-top: 24px;
+}
+#states td { vertical-align: top; }
+@media (max-width: 640px) {
+  #states thead { display: none; }
+  #states tr { display: block; padding: 10px 0; border-bottom: 1px solid var(--border); background: transparent !important; }
+  #states tr[hidden] { display: none; }
+  #states td { display: block; border: 0; padding: 2px 0; }
+  #states td[data-label]::before { content: attr(data-label) ": "; font-weight: 700; color: var(--muted); font-size: .85rem; }
+}

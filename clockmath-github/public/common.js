@@ -81,7 +81,8 @@ var CM_TOOLS = [
   ['/salary-to-hourly', 'Salary to Hourly'],
   ['/days-between-dates', 'Days Between Dates'],
   ['/time-zone-converter', 'Time Zone Converter'],
-  ['/sleep-calculator', 'Sleep Calculator']
+  ['/sleep-calculator', 'Sleep Calculator'],
+  ['/break-laws', 'Break Laws by State']
 ];
 
 function cmAllMenu() {
@@ -157,9 +158,25 @@ function cmTitleMenu() {
   row.appendChild(box);
 }
 
+/* Top menu: the Military Time button is replaced by Break Laws (Military Time stays in "All calculators") */
+function cmNavFix() {
+  var nav = document.querySelector('.site-nav');
+  if (!nav) return;
+  var mil = nav.querySelector(':scope > a[href="/military-time-converter"]');
+  if (mil) {
+    mil.href = '/break-laws';
+    mil.textContent = 'Break Laws';
+    mil.removeAttribute('aria-current');
+  }
+  if (location.pathname.indexOf('/break-laws') === 0) {
+    var bl = nav.querySelector(':scope > a[href="/break-laws"]');
+    if (bl) bl.setAttribute('aria-current', 'page');
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
+  cmNavFix();
   cmAllMenu();
-  
 });
