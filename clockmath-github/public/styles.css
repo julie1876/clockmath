@@ -77,9 +77,56 @@ a:hover { color: var(--brand-dark); }
 }
 .site-nav a:hover { background: #fff; border-color: var(--brand); color: var(--brand); }
 .site-nav a[aria-current="page"] { background: var(--brand); color: #fff; border-color: var(--brand); }
+/* "All calculators" menu */
+.all-menu { position: relative; }
+.all-btn {
+  font: inherit;
+  font-size: .92rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 7px 14px;
+  min-height: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--brand);
+  border: 1.5px solid var(--brand);
+  cursor: pointer;
+}
+.all-btn:hover, .all-btn[aria-expanded="true"] { background: var(--brand); color: #fff; }
+.all-list {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 50;
+  width: 270px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(20, 30, 60, .15);
+  padding: 6px;
+}
+.all-list[hidden] { display: none; }
+.site-nav .all-list a {
+  background: none;
+  border: 0;
+  display: block;
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .95rem;
+}
+.site-nav .all-list a:hover { background: var(--brand-soft); color: var(--brand-dark); }
+.site-nav .all-list a[aria-current="page"] { background: var(--brand); color: #fff; }
+
 @media (max-width: 560px) {
   .site-nav { gap: 6px; }
   .site-nav a { font-size: .85rem; padding: 6px 11px; }
+  .all-btn { font-size: .85rem; padding: 6px 11px; }
+  .all-menu { position: static; }
+  .site-header .wrap { position: relative; }
+  .all-list { left: 16px; right: 16px; width: auto; top: auto; margin-top: 8px; }
 }
 
 /* Main */
@@ -235,6 +282,38 @@ tbody tr:nth-child(even) { background: #fafbfd; }
   min-height: 40px;
 }
 .tabs button[aria-selected="true"] { background: var(--brand); color: #fff; border-color: var(--brand); }
+
+/* "Switch calculator" dropdown beside the page title */
+.title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 20px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.title-row h1 { margin: 0; flex: 1 1 320px; }
+.title-switch { flex: 0 0 240px; }
+.title-switch label {
+  display: block;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.title-switch select {
+  min-height: 42px;
+  padding: 8px 12px;
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--brand-dark);
+  border-color: var(--brand);
+  cursor: pointer;
+}
+@media (max-width: 560px) {
+  .title-switch { flex: 1 1 100%; }
+}
+@media print { .title-switch { display: none; } }
 
 /* Content */
 .content p, .content li { color: #2b3447; }
