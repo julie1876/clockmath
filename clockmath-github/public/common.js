@@ -175,6 +175,25 @@ function cmNavFix() {
 }
 
 /* ------------------------------------------------------------------
+   Google Analytics (visitor counts). Added to every page from here.
+   ------------------------------------------------------------------ */
+var CM_GA_ID = 'G-MEWCXTEPZL';
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+(function () {
+  if (document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) return;
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + CM_GA_ID;
+  document.head.appendChild(s);
+  gtag('js', new Date());
+  gtag('config', CM_GA_ID);
+})();
+function cmTrack(name, params) {
+  try { gtag('event', name, params || {}); } catch (e) {}
+}
+
+/* ------------------------------------------------------------------
    Home screen app ("Get the app" button)
    Adds the app settings to every page, so no page HTML needs editing.
    ------------------------------------------------------------------ */
@@ -236,6 +255,7 @@ var CM_APP = (function () {
     show();
   });
   window.addEventListener('appinstalled', function () {
+    cmTrack('app_installed');
     deferred = null;
     if (btn) btn.hidden = true;
   });
@@ -280,6 +300,12 @@ var CM_APP = (function () {
   }
 
   function setup() {
+    // Count visits that come from the home screen app (once per visit)
+    if (installed()) {
+      var seen = false;
+      try { seen = sessionStorage.getItem('cm-app-open') === '1'; sessionStorage.setItem('cm-app-open', '1'); } catch (e) {}
+      if (!seen) cmTrack('app_open', { device: isIOS ? 'iphone' : isAndroid ? 'android' : 'computer' });
+    }
     var nav = document.querySelector('.site-nav');
     if (!nav || document.getElementById('cm-app')) return;
     btn = document.createElement('button');
@@ -289,12 +315,18 @@ var CM_APP = (function () {
     btn.hidden = true;
     btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Get the app';
     btn.addEventListener('click', function () {
+      var device = isIOS ? 'iphone' : isAndroid ? 'android' : 'computer';
       if (deferred) {
+        cmTrack('app_button_click', { device: device, method: 'install_box' });
         var p = deferred;
         deferred = null;
         p.prompt();
-        p.userChoice.then(function (c) { if (c && c.outcome === 'accepted') btn.hidden = true; }).catch(function () {});
+        p.userChoice.then(function (c) {
+          cmTrack('app_install_choice', { device: device, choice: c && c.outcome });
+          if (c && c.outcome === 'accepted') btn.hidden = true;
+        }).catch(function () {});
       } else {
+        cmTrack('app_button_click', { device: device, method: 'instructions' });
         var box = helpBox();
         box.hidden = false;
         document.getElementById('cm-app-close').focus();
