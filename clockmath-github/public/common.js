@@ -174,9 +174,144 @@ function cmNavFix() {
   }
 }
 
+/* ------------------------------------------------------------------
+   Home screen app ("Get the app" button)
+   Adds the app settings to every page, so no page HTML needs editing.
+   ------------------------------------------------------------------ */
+var CM_APP = (function () {
+  var head = document.head;
+  function addTag(tag, attrs) {
+    var sel = tag + Object.keys(attrs).filter(function (k) { return k === 'rel' || k === 'name'; })
+      .map(function (k) { return '[' + k + '="' + attrs[k] + '"]'; }).join('');
+    if (head.querySelector(sel)) return;
+    var el = document.createElement(tag);
+    Object.keys(attrs).forEach(function (k) { el.setAttribute(k, attrs[k]); });
+    head.appendChild(el);
+  }
+  addTag('link', { rel: 'manifest', href: '/manifest.webmanifest' });
+  addTag('link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' });
+  addTag('meta', { name: 'apple-mobile-web-app-capable', content: 'yes' });
+  addTag('meta', { name: 'mobile-web-app-capable', content: 'yes' });
+  addTag('meta', { name: 'apple-mobile-web-app-title', content: 'ClockMath' });
+  addTag('meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'default' });
+
+  var css = document.createElement('style');
+  css.textContent =
+    '.app-btn{font:inherit;font-size:.92rem;font-weight:700;line-height:1.2;padding:7px 14px;min-height:0;border-radius:999px;' +
+      'background:var(--accent,#0e8a6a);color:#fff;border:1.5px solid var(--accent,#0e8a6a);cursor:pointer;display:inline-flex;align-items:center;gap:6px}' +
+    '.app-btn[hidden]{display:none}' +
+    '.app-btn:hover{background:#0b6f55;border-color:#0b6f55}' +
+    '.app-btn svg{width:15px;height:15px}' +
+    '.app-help{position:fixed;inset:0;z-index:100;background:rgba(20,30,60,.45);display:flex;align-items:flex-end;justify-content:center;padding:16px}' +
+    '.app-help[hidden]{display:none}' +
+    '.app-help .box{background:#fff;color:var(--text,#1c2333);border-radius:16px;max-width:420px;width:100%;padding:20px 20px 16px;box-shadow:0 10px 40px rgba(0,0,0,.25)}' +
+    '.app-help h2{margin:0 0 6px;font-size:1.2rem}' +
+    '.app-help p{margin:0 0 10px;color:var(--muted,#5b6478)}' +
+    '.app-help ol{margin:0 0 14px;padding-left:22px}' +
+    '.app-help li{margin-bottom:6px}' +
+    '.app-help .row{display:flex;justify-content:flex-end}' +
+    '@media(min-width:600px){.app-help{align-items:center}}' +
+    '@media(max-width:560px){.app-btn{font-size:.85rem;padding:6px 11px}}' +
+    '@media print{.app-btn,.app-help{display:none!important}}';
+  head.appendChild(css);
+
+  // Lets the installed app open (and the calculators work) without a connection
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').catch(function () {});
+    });
+  }
+
+  var ua = navigator.userAgent || '';
+  var isIOS = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroid = /android/i.test(ua);
+  var installed = function () {
+    return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  };
+  var deferred = null, btn = null;
+
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferred = e;
+    show();
+  });
+  window.addEventListener('appinstalled', function () {
+    deferred = null;
+    if (btn) btn.hidden = true;
+  });
+
+  function show() {
+    if (btn && !installed()) btn.hidden = false;
+  }
+
+  function helpBox() {
+    var box = document.getElementById('cm-app-help');
+    if (box) return box;
+    var steps;
+    if (isIOS) {
+      steps = '<li>Tap the <strong>Share</strong> button <span aria-hidden="true">(the square with an arrow pointing up)</span>.</li>' +
+              '<li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>' +
+              '<li>Tap <strong>Add</strong>.</li>';
+    } else if (isAndroid) {
+      steps = '<li>Tap the <strong>⋮</strong> menu at the top right of your browser.</li>' +
+              '<li>Tap <strong>Add to Home screen</strong> or <strong>Install app</strong>.</li>' +
+              '<li>Tap <strong>Install</strong> or <strong>Add</strong>.</li>';
+    } else {
+      steps = '<li>Open your browser menu.</li>' +
+              '<li>Choose <strong>Install ClockMath</strong> or <strong>Add to Home screen</strong>.</li>';
+    }
+    box = document.createElement('div');
+    box.id = 'cm-app-help';
+    box.className = 'app-help';
+    box.hidden = true;
+    box.innerHTML =
+      '<div class="box" role="dialog" aria-modal="true" aria-labelledby="cm-app-title">' +
+        '<h2 id="cm-app-title">Add ClockMath to your home screen</h2>' +
+        '<p>It opens like an app, without the browser bars, and the calculators work even without a connection.</p>' +
+        '<ol>' + steps + '</ol>' +
+        '<div class="row"><button type="button" class="secondary" id="cm-app-close">Got it</button></div>' +
+      '</div>';
+    document.body.appendChild(box);
+    function close() { box.hidden = true; if (btn) btn.focus(); }
+    box.addEventListener('click', function (e) { if (e.target === box) close(); });
+    document.getElementById('cm-app-close').addEventListener('click', close);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) close(); });
+    return box;
+  }
+
+  function setup() {
+    var nav = document.querySelector('.site-nav');
+    if (!nav || document.getElementById('cm-app')) return;
+    btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'cm-app';
+    btn.className = 'app-btn';
+    btn.hidden = true;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Get the app';
+    btn.addEventListener('click', function () {
+      if (deferred) {
+        var p = deferred;
+        deferred = null;
+        p.prompt();
+        p.userChoice.then(function (c) { if (c && c.outcome === 'accepted') btn.hidden = true; }).catch(function () {});
+      } else {
+        var box = helpBox();
+        box.hidden = false;
+        document.getElementById('cm-app-close').focus();
+      }
+    });
+    nav.appendChild(btn);
+    // Phones always see the button; computers only when the browser can install it
+    if (isIOS || isAndroid || deferred) show();
+  }
+
+  return { setup: setup };
+})();
+
 document.addEventListener('DOMContentLoaded', function () {
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
   cmNavFix();
   cmAllMenu();
+  CM_APP.setup();
 });
